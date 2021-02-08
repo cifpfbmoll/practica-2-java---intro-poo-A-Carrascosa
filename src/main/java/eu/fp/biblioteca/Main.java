@@ -19,6 +19,8 @@ public class Main {
     public static void main(String[] args) {
 
         int opcion = 99;
+        Biblioteca biblio = new Biblioteca();
+        Libro libroNuevo;
 
         while (opcion != 0) {
             System.out.println("    Menú de biblioteca");
@@ -32,28 +34,26 @@ public class Main {
             System.out.println(" 0 > Cerrar programa");
 
             opcion = lectorTeclado.nextInt();
-            Biblioteca biblio = new Biblioteca();
-            ArrayList<Libro> listaLibros = new Libro();
-            ArrayList<Libro> listaLibros = biblio.getListaLibros();
 
             switch (opcion) {
                 case 1:
-                    Libro.anadirLibro(listaLibros);
+                    libroNuevo = Libro.anadirLibro();
+                    biblio.getListaLibros().add(libroNuevo);
                     break;
                 case 2:
-                    Libro.eliminarLibro(listaLibros);
+                    Libro.eliminarLibro(biblio.getListaLibros());
                     break;
                 case 3:
-                    Libro.buscarPorIsbn(listaLibros);
+                    Libro.buscarPorIsbn(biblio.getListaLibros());
                     break;
                 case 4:
-                    Libro.buscarPorTitulo(listaLibros);
+                    Libro.buscarPorTitulo(biblio.getListaLibros());
                     break;
                 case 5:
-                    Biblioteca.mostrarLibros(listaLibros);
+                    Biblioteca.mostrarLibros(biblio.getListaLibros());
                     break;
                 case 6:
-                    Biblioteca.mostrarLibrosDisponibles(listaLibros);
+                    Biblioteca.mostrarLibrosDisponibles(biblio.getListaLibros());
                     break;
             }
         }

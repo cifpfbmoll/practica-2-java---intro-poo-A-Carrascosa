@@ -120,7 +120,7 @@ public class Libro {
         return "{ " + "ISBN: " + isbn + " | " + "Titulo: " + titulo + " | " + "Autor: " + autor + " | " + "Editorial: " + editorial + " | " + "Copias: " + copias + " | " + "Copias disponibles: " + copiasDisponibles + " }";
     }
 
-    public static void anadirLibro(ArrayList<Libro> listaLibros) {
+    public static Libro anadirLibro() {
         Libro libroNuevo = new Libro();
         System.out.println(">>> Titulo del libro:");
         libroNuevo.setTitulo(lectorLibro.nextLine());
@@ -137,7 +137,7 @@ public class Libro {
         libroNuevo.setCopiasDisponibles(lectorLibro.nextInt(), copias);
         lectorLibro.nextLine(); // Limpiar buffer dentro del input
 
-        listaLibros.add(libroNuevo);
+        return libroNuevo;
     }
 
     public static void eliminarLibro(ArrayList<Libro> listaLibros) {

@@ -17,8 +17,8 @@ public class Biblioteca {
     public static Scanner lectorLibro = new Scanner(System.in);
 
     private String nombreBiblioteca;
-    private ArrayList<Libro> listaLibros;
-    private ArrayList<Persona> listaPersonal;
+    private ArrayList<Libro> listaLibros = new ArrayList();
+    private ArrayList<Persona> listaPersonal = new ArrayList();
 
     // Constructor vacio
     public Biblioteca() {
