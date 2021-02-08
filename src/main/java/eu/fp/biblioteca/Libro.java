@@ -102,6 +102,7 @@ public class Libro {
             System.out.println(">>> No puede haber menos de 1 copia.");
             System.out.println(">>> Vuelve a introducir la cantidad de copias.");
             copias = lectorLibro.nextInt();
+            lectorLibro.nextLine(); // Limpiar buffer dentro del input
         }
         this.copias = copias;
     }
@@ -111,6 +112,7 @@ public class Libro {
             System.out.println(">>> No puede haber menos de 1 copia.");
             System.out.println(">>> Vuelve a introducir la cantidad de copias.");
             copiasDisponibles = lectorLibro.nextInt();
+            lectorLibro.nextLine(); // Limpiar buffer dentro del input
         }
         this.copiasDisponibles = copiasDisponibles;
     }
@@ -144,6 +146,7 @@ public class Libro {
         boolean encontrado = false;
         System.out.println(">>> Introduce el ISBN del libro a eliminar");
         int ISBN = lectorLibro.nextInt();
+        lectorLibro.nextLine(); // Limpiar buffer dentro del input
         for (int i = 0; (i < listaLibros.size() && encontrado == false); i++) {
             if (listaLibros.get(i).getIsbn() == ISBN) {
                 if (listaLibros.get(i).getCopiasDisponibles() == listaLibros.get(i).getCopias()) {
@@ -166,6 +169,7 @@ public class Libro {
     public static void buscarPorIsbn(ArrayList<Libro> listaLibros) {
         System.out.println(">>> Introduce el ISBN del libro a buscar");
         int ISBN = lectorLibro.nextInt();
+        lectorLibro.nextLine(); // Limpiar buffer dentro del input
         boolean encontrado = false;
 
         for (int i = 0; (i < listaLibros.size() && encontrado == false); i++) {

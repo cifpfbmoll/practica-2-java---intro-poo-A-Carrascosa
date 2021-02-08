@@ -34,6 +34,7 @@ public class Main {
             System.out.println(" 0 > Cerrar programa");
 
             opcion = lectorTeclado.nextInt();
+            lectorTeclado.nextLine(); // Limpiar buffer dentro del input
 
             switch (opcion) {
                 case 1:

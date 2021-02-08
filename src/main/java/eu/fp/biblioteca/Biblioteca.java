@@ -6,7 +6,6 @@
 package eu.fp.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -14,7 +13,6 @@ import java.util.Scanner;
  */
 public class Biblioteca {
 
-    public static Scanner lectorLibro = new Scanner(System.in);
 
     private String nombreBiblioteca;
     private ArrayList<Libro> listaLibros = new ArrayList();
