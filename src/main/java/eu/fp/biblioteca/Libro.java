@@ -140,7 +140,7 @@ public class Libro {
         return libroNuevo;
     }
 
-    public static void eliminarLibro(ArrayList<Libro> listaLibros) {
+    public static int eliminarLibro(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
         System.out.println(">>> Introduce el ISBN del libro a eliminar");
         int ISBN = lectorLibro.nextInt();
@@ -149,8 +149,9 @@ public class Libro {
                 if (listaLibros.get(i).getCopiasDisponibles() == listaLibros.get(i).getCopias()) {
                     encontrado = true;
                     contadorLibros -= 1;
-                    listaLibros.remove(i);
+                    //listaLibros.remove(i);
                     System.out.println(">>> Se ha eliminado el libro con el ISBN '" + ISBN + "'");
+                    return i;
                 } else {
                     System.out.println(">>> No se ha podido eliminar el libro con el ISBN '" + ISBN + "' por que tiene reservas.");
                 }
@@ -159,6 +160,7 @@ public class Libro {
         if (encontrado == false) {
             System.out.println(">>> No se ha encontrado ningún libro con el ISBN '" + ISBN + "'");
         }
+        return -1;
     }
 
     public static void buscarPorIsbn(ArrayList<Libro> listaLibros) {

@@ -41,7 +41,10 @@ public class Main {
                     biblio.getListaLibros().add(libroNuevo);
                     break;
                 case 2:
-                    Libro.eliminarLibro(biblio.getListaLibros());
+                    int isbn = Libro.eliminarLibro(biblio.getListaLibros());
+                    if (isbn != -1) {
+                        biblio.getListaLibros().remove(isbn);
+                    }
                     break;
                 case 3:
                     Libro.buscarPorIsbn(biblio.getListaLibros());
