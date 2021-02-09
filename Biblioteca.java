@@ -63,7 +63,7 @@ public class Biblioteca {
 
     @Override
     public String toString() {
-        return "{ " + "Biblioteca: " + nombreBiblioteca + " | " + "Titulos: " + listaLibros.size() + "Tamaño personal: " + listaPersonal.size() + " }";
+        return "{ " + "Biblioteca: " + nombreBiblioteca + " | " + "Titulos: " + listaLibros.size() + " | " + "Tamaño personal: " + listaPersonal.size() + " }";
     }
 
     public static void mostrarLibros(ArrayList<Libro> listaLibros) {
