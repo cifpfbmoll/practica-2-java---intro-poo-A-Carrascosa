@@ -30,7 +30,7 @@ public class Main {
             System.out.println(" 2 > Gestionar Reservas");
             System.out.println(" 3 > Gestionar Personal");
             System.out.println(" 4 > Gestionar Biblioteca");
-            System.out.println(" "); 
+            System.out.println(" ");
             System.out.println(" 0 > Cerrar programa");
 
             opcion = lectorTeclado.nextInt();
@@ -48,7 +48,7 @@ public class Main {
                     System.out.println(" 4 > Buscar libro por titulo");
                     System.out.println(" 5 > Mostrar libros");
                     System.out.println(" 6 > Mostrar libros disponibles");
-                    System.out.println(" "); 
+                    System.out.println(" ");
                     System.out.println(" 0 > Volver al menú principal");
 
                     opcion2 = lectorTeclado.nextInt();
@@ -88,11 +88,29 @@ public class Main {
                     System.out.println(" 2 > Eliminar reserva");
                     System.out.println(" 3 > Ver libros con reservas");
                     System.out.println(" 4 > Ver libros disponibles");
-                    System.out.println(" "); 
+                    System.out.println(" ");
                     System.out.println(" 0 > Volver al menú principal");
 
                     opcion2 = lectorTeclado.nextInt();
                     lectorTeclado.nextLine(); // Limpiar buffer dentro del input
+
+                    switch (opcion2) {
+                        case 1: // Añadir reserva
+                            break;
+
+                        case 2: // Eliminar reserva
+                            break;
+
+                        case 3: // Mostrar los libros con reservas
+                            Biblioteca.mostrarLibrosConReservas(biblio.getListaLibros());
+                            break;
+
+                        case 4: // Mostrar los libros disponibles
+                            Biblioteca.mostrarLibrosDisponibles(biblio.getListaLibros());
+                            break;
+
+                    }
+
                     break;
 
                 case 3:
@@ -102,7 +120,7 @@ public class Main {
                     System.out.println(" 1 > Añadir trabajador");
                     System.out.println(" 2 > Eliminar trabajador");
                     System.out.println(" 3 > Mostrar trabajadores registrados");
-                    System.out.println(" "); 
+                    System.out.println(" ");
                     System.out.println(" 0 > Volver al menú principal");
 
                     opcion2 = lectorTeclado.nextInt();
@@ -124,27 +142,27 @@ public class Main {
                             break;
                     }
                     break;
-                    
+
                 case 4:
                     clearScreen();
                     System.out.println("    Gestionar Biblioteca");
                     System.out.println("================================================");
-                    System.out.println(" "); 
+                    System.out.println(" ");
                     System.out.println(" 0 > Volver al menú principal");
 
                     opcion2 = lectorTeclado.nextInt();
                     lectorTeclado.nextLine(); // Limpiar buffer dentro del input
                     break;
-                    
-            }
 
+            }
         }
+
     }
-    
+
     public static void clearScreen() {
-        for(int i = 0 ; i < 10 ; i++) {
-            System.out.println(" "); 
+        for (int i = 0; i < 10; i++) {
+            System.out.println(" ");
         }
     }
-    
+
 }

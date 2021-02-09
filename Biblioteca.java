@@ -80,7 +80,7 @@ public class Biblioteca {
     }
 
     public static void mostrarLibrosDisponibles(ArrayList<Libro> listaLibros) {
-        System.out.println(">>> Enseñando todos los libros de la biblioteca");
+        System.out.println(">>> Enseñando todos los libros disponibles de la biblioteca");
         boolean encontrado = false;
 
         for (int i = 0; (i < listaLibros.size()); i++) {
@@ -92,5 +92,24 @@ public class Biblioteca {
         if (encontrado == false) {
             System.out.println(">>> No se ha encontrado ningun libro disponible en la biblioteca");
         }
+    }
+    
+    public static void mostrarLibrosConReservas(ArrayList<Libro> listaLibros) {
+        System.out.println(">>> Enseñando todos los libros con reservas de la biblioteca");
+        boolean encontrado = false;
+
+        for (int i = 0; (i < listaLibros.size()); i++) {
+            if (listaLibros.get(i).getCopiasDisponibles() != listaLibros.get(i).getCopias()) {
+                encontrado = true;
+                System.out.println(listaLibros.get(i).toString());
+            }
+        }
+        if (encontrado == false) {
+            System.out.println(">>> No se ha encontrado ningun libro con reservas en la biblioteca");
+        }
+    }
+    
+    public static void anadirReserva(ArrayList<Libro> listaLibros) {
+        
     }
 }
