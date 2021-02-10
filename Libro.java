@@ -30,25 +30,25 @@ public class Libro {
     }
 
     // Constructor con todos los parametros
-    public Libro(int isbn, String titulo, String autor, String editorial, int copias, int copiasDisponibles) {
+    public Libro(int isbn, String titulo, String autor, String editorial, int copias, int copiasDisponibles, ArrayList<Libro> listaLibros) {
         contadorLibros++;
-        this.setIsbn(isbn);
+        this.setIsbn(isbn, listaLibros);
         this.setTitulo(titulo);
         this.setAutor(autor);
         this.setEditorial(editorial);
         this.setCopias(copias);
-        this.setCopiasDisponibles(copiasDisponibles, copias);
+        this.setCopiasDisponibles(copiasDisponibles);
     }
 
     // Constructor copia
-    public Libro(Libro copia) {
+    public Libro(Libro copia, ArrayList<Libro> listaLibros) {
         contadorLibros++;
-        this.setIsbn(copia.getIsbn());
+        this.setIsbn(copia.getIsbn(), listaLibros);
         this.setTitulo(copia.getTitulo());
         this.setAutor(copia.getAutor());
         this.setEditorial(copia.getEditorial());
         this.setCopias(copia.getCopias());
-        this.setCopiasDisponibles(copia.getCopiasDisponibles(), copia.getCopias());
+        this.setCopiasDisponibles(copia.getCopiasDisponibles());
     }
 
     // GETTERS
@@ -81,7 +81,14 @@ public class Libro {
     }
 
     // SETTERS
-    public void setIsbn(int isbn) {
+    public void setIsbn(int isbn, ArrayList<Libro> listaLibros) {
+        for (int i = 0; i < listaLibros.size(); i++) {
+            while (listaLibros.get(i).getIsbn() == isbn) {
+                System.out.println(">>> Este ISBN ya esta en esta biblioteca, introduce otro ISBN.");
+                isbn = lectorLibro.nextInt();
+                lectorLibro.nextLine(); // Limpiar buffer dentro del input
+            }
+        }
         this.isbn = isbn;
     }
 
@@ -107,13 +114,7 @@ public class Libro {
         this.copias = copias;
     }
 
-    public void setCopiasDisponibles(int copiasDisponibles, int copias) {
-        while (copiasDisponibles > copias) {
-            System.out.println(">>> No puede haber menos de 1 copia.");
-            System.out.println(">>> Vuelve a introducir la cantidad de copias.");
-            copiasDisponibles = lectorLibro.nextInt();
-            lectorLibro.nextLine(); // Limpiar buffer dentro del input
-        }
+    public void setCopiasDisponibles(int copiasDisponibles) {
         this.copiasDisponibles = copiasDisponibles;
     }
 
@@ -122,7 +123,7 @@ public class Libro {
         return "{ " + "ISBN: " + isbn + " | " + "Titulo: " + titulo + " | " + "Autor: " + autor + " | " + "Editorial: " + editorial + " | " + "Copias: " + copias + " | " + "Copias disponibles: " + copiasDisponibles + " }";
     }
 
-    public static Libro anadirLibro() {
+    public static Libro anadirLibro(ArrayList<Libro> listaLibros) {
         Libro libroNuevo = new Libro();
         System.out.println(">>> Titulo del libro:");
         libroNuevo.setTitulo(lectorLibro.nextLine());
@@ -131,12 +132,19 @@ public class Libro {
         System.out.println(">>> Editorial del libro:");
         libroNuevo.setEditorial(lectorLibro.nextLine());
         System.out.println(">>> ISBN del libro:");
-        libroNuevo.setIsbn(lectorLibro.nextInt());
+        libroNuevo.setIsbn(lectorLibro.nextInt(), listaLibros);
         System.out.println(">>> Copias del libro:");
         int copias = lectorLibro.nextInt();
         libroNuevo.setCopias(copias);
         System.out.println(">>> Copias disponibles del libro:");
-        libroNuevo.setCopiasDisponibles(lectorLibro.nextInt(), copias);
+        int copiasDisponibles = lectorLibro.nextInt();
+        while (copiasDisponibles > copias) {
+            System.out.println(">>> No puede haber menos de 1 copia.");
+            System.out.println(">>> Vuelve a introducir la cantidad de copias.");
+            copiasDisponibles = lectorLibro.nextInt();
+            lectorLibro.nextLine(); // Limpiar buffer dentro del input
+        }
+        libroNuevo.setCopiasDisponibles(copiasDisponibles);
         lectorLibro.nextLine(); // Limpiar buffer dentro del input
 
         return libroNuevo;
@@ -198,4 +206,49 @@ public class Libro {
             System.out.println(">>> No se ha encontrado ninguna coincidencia con '" + busqueda + "'");
         }
     }
+
+    public static void anadirReserva(ArrayList<Libro> listaLibros) {
+        System.out.println(">>> Introduce el ISBN del libro a reservar");
+        int isbn = lectorLibro.nextInt();
+        lectorLibro.nextLine(); // Limpiar buffer dentro del input
+        boolean encontrado = false;
+
+        for (int i = 0; (i < listaLibros.size()); i++) {
+            if (listaLibros.get(i).getIsbn() == isbn) {
+                encontrado = true;
+                if (listaLibros.get(i).getCopiasDisponibles() > 0) {
+                    listaLibros.get(i).setCopiasDisponibles(listaLibros.get(i).getCopiasDisponibles() - 1);
+                    System.out.println(">>> El libro '" + listaLibros.get(i).getTitulo() + "' ha sido reservado.");
+                } else {
+                    System.out.println(">>> No hay libros disponibles de '" + listaLibros.get(i).getTitulo() + "'.");
+                }
+            }
+        }
+        if (encontrado == false) {
+            System.out.println(">>> El libro con ISBN '" + isbn + "' no ha sido encontrado.");
+        }
+    }
+
+    public static void eliminarReserva(ArrayList<Libro> listaLibros) {
+        System.out.println(">>> Introduce el ISBN del libro a devolver");
+        int isbn = lectorLibro.nextInt();
+        lectorLibro.nextLine(); // Limpiar buffer dentro del input
+        boolean encontrado = false;
+
+        for (int i = 0; (i < listaLibros.size()); i++) {
+            if (listaLibros.get(i).getIsbn() == isbn) {
+                encontrado = true;
+                if (listaLibros.get(i).getCopias() > listaLibros.get(i).getCopiasDisponibles()) {
+                    listaLibros.get(i).setCopiasDisponibles(listaLibros.get(i).getCopiasDisponibles() + 1);
+                    System.out.println(">>> El libro '" + listaLibros.get(i).getTitulo() + "' ha sido devuelto a la biblioteca.");
+                } else {
+                    System.out.println(">>> No hay reservas pendientes sobre '" + listaLibros.get(i).getTitulo() + "'.");
+                }
+            }
+        }
+        if (encontrado == false) {
+            System.out.println(">>> El libro con ISBN '" + isbn + "' no ha sido encontrado.");
+        }
+    }
+
 }

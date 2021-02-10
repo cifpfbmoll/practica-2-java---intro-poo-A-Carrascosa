@@ -56,7 +56,7 @@ public class Main {
 
                     switch (opcion2) {
                         case 1: // Añadir libros
-                            libroNuevo = Libro.anadirLibro();
+                            libroNuevo = Libro.anadirLibro(biblio.getListaLibros());
                             biblio.getListaLibros().add(libroNuevo);
                             break;
                         case 2: // Eliminar libros
@@ -96,9 +96,11 @@ public class Main {
 
                     switch (opcion2) {
                         case 1: // Añadir reserva
+                            Libro.anadirReserva(biblio.getListaLibros());
                             break;
 
                         case 2: // Eliminar reserva
+                            Libro.eliminarReserva(biblio.getListaLibros());
                             break;
 
                         case 3: // Mostrar los libros con reservas
@@ -160,7 +162,7 @@ public class Main {
     }
 
     public static void clearScreen() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.println(" ");
         }
     }
