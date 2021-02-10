@@ -6,6 +6,7 @@
 package eu.fp.biblioteca;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Biblioteca {
 
+    public static Scanner lectorBiblioteca = new Scanner(System.in);
 
     private String nombreBiblioteca;
     private ArrayList<Libro> listaLibros = new ArrayList();
@@ -66,6 +68,16 @@ public class Biblioteca {
         return "{ " + "Biblioteca: " + nombreBiblioteca + " | " + "Titulos: " + listaLibros.size() + " | " + "Tamaño personal: " + listaPersonal.size() + " }";
     }
 
+    public static void verInfoBiblioteca(Biblioteca obj){
+        System.out.println(obj.toString());
+    }
+    
+    public static void cambiarNombre(Biblioteca obj) {
+        System.out.println(">>> Introduce el nuevo nombre de la biblioteca");
+        String nombre = lectorBiblioteca.nextLine();
+        obj.setNombreBiblioteca(nombre);
+    }
+    
     public static void mostrarLibros(ArrayList<Libro> listaLibros) {
         System.out.println(">>> Enseñando todos los libros de la biblioteca");
         boolean encontrado = false;
@@ -107,9 +119,5 @@ public class Biblioteca {
         if (encontrado == false) {
             System.out.println(">>> No se ha encontrado ningun libro con reservas en la biblioteca");
         }
-    }
-    
-    public static void anadirReserva(ArrayList<Libro> listaLibros) {
-        
     }
 }
