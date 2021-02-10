@@ -75,11 +75,11 @@ public class Main {
                             break;
                             
                         case 5: // Mostrar todos los libros
-                            Biblioteca.mostrarLibros(biblio.getListaLibros());
+                            biblio.mostrarLibros();
                             break;
                             
                         case 6: // Mostrar los libros disponibles
-                            Biblioteca.mostrarLibrosDisponibles(biblio.getListaLibros());
+                            biblio.mostrarLibrosDisponibles();
                             break;
                     }
                     break;
@@ -112,7 +112,7 @@ public class Main {
                             break;
 
                         case 4: // Mostrar los libros disponibles
-                            Biblioteca.mostrarLibrosDisponibles(biblio.getListaLibros());
+                            biblio.mostrarLibrosDisponibles();
                             break;
 
                     }

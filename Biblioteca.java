@@ -78,7 +78,7 @@ public class Biblioteca {
         obj.setNombreBiblioteca(nombre);
     }
     
-    public static void mostrarLibros(ArrayList<Libro> listaLibros) {
+    public void mostrarLibros() {
         System.out.println(">>> Enseñando todos los libros de la biblioteca");
         boolean encontrado = false;
 
@@ -91,7 +91,7 @@ public class Biblioteca {
         }
     }
 
-    public static void mostrarLibrosDisponibles(ArrayList<Libro> listaLibros) {
+    public void mostrarLibrosDisponibles() {
         System.out.println(">>> Enseñando todos los libros disponibles de la biblioteca");
         boolean encontrado = false;
 
